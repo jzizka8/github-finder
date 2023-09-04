@@ -1,17 +1,11 @@
-import { useState } from 'react'
-import { Button, TextField } from '@mui/material';
+import { Header } from './Components/Header';
+import { GithubUserInfo } from './Pages/GithubUserInfo';
+
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='flex  items-center'>
-      <h1>Github finder</h1>
-      <div className='text-red-500'>
-        hei
-
-      </div>
-      <TextField id="usernameTxt" label="Username" variant="standard" />
-      <Button variant="contained">Find!</Button>
+    <div className='flex items-center flex-col bg-zinc-100 px-4'>
+      <Header />
+      <GithubUserInfo />
     </div>
   )
 }
