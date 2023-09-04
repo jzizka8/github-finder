@@ -1,0 +1,44 @@
+[
+    {
+      "login": "Bumpr",
+      "id": 453454,
+      "node_id": "MDEyOk9yZ2FuaXphdGlvbjQ1MzQ1NA==",
+      "url": "https://api.github.com/orgs/Bumpr",
+      "repos_url": "https://api.github.com/orgs/Bumpr/repos",
+      "events_url": "https://api.github.com/orgs/Bumpr/events",
+      "hooks_url": "https://api.github.com/orgs/Bumpr/hooks",
+      "issues_url": "https://api.github.com/orgs/Bumpr/issues",
+      "members_url": "https://api.github.com/orgs/Bumpr/members{/member}",
+      "public_members_url": "https://api.github.com/orgs/Bumpr/public_members{/member}",
+      "avatar_url": "https://avatars.githubusercontent.com/u/453454?v=4",
+      "description": null
+    },
+    {
+      "login": "NixOS",
+      "id": 487568,
+      "node_id": "MDEyOk9yZ2FuaXphdGlvbjQ4NzU2OA==",
+      "url": "https://api.github.com/orgs/NixOS",
+      "repos_url": "https://api.github.com/orgs/NixOS/repos",
+      "events_url": "https://api.github.com/orgs/NixOS/events",
+      "hooks_url": "https://api.github.com/orgs/NixOS/hooks",
+      "issues_url": "https://api.github.com/orgs/NixOS/issues",
+      "members_url": "https://api.github.com/orgs/NixOS/members{/member}",
+      "public_members_url": "https://api.github.com/orgs/NixOS/public_members{/member}",
+      "avatar_url": "https://avatars.githubusercontent.com/u/487568?v=4",
+      "description": ""
+    },
+    {
+      "login": "nix-community",
+      "id": 33221035,
+      "node_id": "MDEyOk9yZ2FuaXphdGlvbjMzMjIxMDM1",
+      "url": "https://api.github.com/orgs/nix-community",
+      "repos_url": "https://api.github.com/orgs/nix-community/repos",
+      "events_url": "https://api.github.com/orgs/nix-community/events",
+      "hooks_url": "https://api.github.com/orgs/nix-community/hooks",
+      "issues_url": "https://api.github.com/orgs/nix-community/issues",
+      "members_url": "https://api.github.com/orgs/nix-community/members{/member}",
+      "public_members_url": "https://api.github.com/orgs/nix-community/public_members{/member}",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33221035?v=4",
+      "description": "A project incubator that works in parallel of the @NixOS org"
+    }
+  ]
