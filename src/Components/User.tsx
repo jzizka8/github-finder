@@ -12,7 +12,7 @@ interface IUserProps {
 
 export const User = (props: IUserProps) => {
     return (
-        <Card sx={{ minWidth: 300 }} >
+        <Card >
             <CardActionArea href={props.html_url} target="blank" className="p-4">
                 <div className="flex justify-center">
                     <Avatar alt={props.login}
