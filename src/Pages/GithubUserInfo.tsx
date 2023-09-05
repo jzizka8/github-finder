@@ -12,9 +12,9 @@ export const GithubUserInfo = () => {
     const [username, setUsername] = useState("");
     const debouncedUsername = useDebounce(username, 300);
 
-    const [{ data: userData, isLoading: userLoading },
-        { data: reposData, isLoading: reposLoading },
-        { data: orgsData, isLoading: orgsLoading }] = useQueries([
+    const [{ data: userData, isLoading: userLoading, isError: userError },
+        { data: reposData, isLoading: reposLoading, isError: reposError },
+        { data: orgsData, isLoading: orgsLoading, isError: orgsError }] = useQueries([
             {
                 queryKey: ['user', debouncedUsername],
                 queryFn: async () => {
@@ -45,22 +45,64 @@ export const GithubUserInfo = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)} />
             <div className="grid sm:grid-cols-[minmax(auto,400px)_minmax(auto,600px)] sm:grid-rows-[auto_1fr] gap-y-2 gap-x-4 my-4">
-                <div className="">
+                <div>
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>User</Typography>
-                    {userLoading ? (<CircularProgress />) : (<User {...userData} />)}
+                    {DisplayData({
+                        data: userData,
+                        isLoading: userLoading,
+                        isError: userError,
+                        component: <User {...userData} />,
+                        errorText: "Error loading user",
+                    })}
                 </div>
 
                 <div className="sm:row-span-2">
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Repositories</Typography>
-                    {reposLoading ? (<CircularProgress />) : reposData.map((r) => <Repository {...r} key={r.id} />
-                    )}
+                    {DisplayData({
+                        data: reposData,
+                        isLoading: reposLoading,
+                        isError: reposError,
+                        component: reposData.map((r) => <Repository {...r} key={r.id} />),
+                        errorText: "Error loading repositories",
+                    })}
                 </div>
-                <div className="">
+                <div>
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Organizations</Typography>
-                    {orgsLoading ? (<CircularProgress />) : orgsData.map((o) => <Organization {...o} key={o.id} />
-                    )}
+                    {DisplayData({
+                        data: orgsData,
+                        isLoading: orgsLoading,
+                        isError: orgsError,
+                        component: orgsData.map((o) => <Organization {...o} key={o.id} />),
+                        errorText: "Error loading organizations",
+                    })}
                 </div>
             </div>
         </>
     )
 }
+
+interface IDisplayDataProps {
+
+    data: any;
+    isLoading: boolean;
+    isError: boolean;
+    component: JSX.Element | JSX.Element[] | null;
+    errorText: string;
+}
+
+const DisplayData = ({ data, isLoading, isError, component, errorText }: IDisplayDataProps) => {
+    if (!data) {
+        return <Typography variant="body1">Nothing to display</Typography>;
+    }
+    if (isLoading) {
+        return <CircularProgress />;
+    }
+    if (isError) {
+        return (
+            <Typography variant="body1" className="text-red-700">
+                {errorText}
+            </Typography>
+        );
+    }
+    return component;
+};
