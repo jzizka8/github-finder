@@ -1,15 +1,38 @@
-import { TextField, Typography } from "@mui/material"
+import { CircularProgress, TextField, Typography } from "@mui/material"
 import { Organization } from "../Components/Organization"
 import { Repository } from "../Components/Repository"
 import { User } from "../Components/User"
 
-import sampleUser from '../SampleData/sampleUser.json';
-import sampleOrgs from '../SampleData/sampleOrgs.json';
-import sampleRepos from '../SampleData/sampleRepos.json';
 import { useState } from "react";
+import { useDebounce } from "@uidotdev/usehooks";
+import { useQueries } from "react-query";
+import { fetchUserInfo, fetchUserOrgs, fetchUserRepos } from "../services/githubApi";
 
 export const GithubUserInfo = () => {
     const [username, setUsername] = useState("");
+    const debouncedUsername = useDebounce(username, 300);
+
+    const [{ data: userData, isLoading: userLoading },
+        { data: reposData, isLoading: reposLoading },
+        { data: orgsData, isLoading: orgsLoading }] = useQueries([
+            {
+                queryKey: ['user', debouncedUsername],
+                queryFn: async () => {
+                    return (await fetchUserInfo(username)).data;
+                },
+            }, {
+                queryKey: ['repos', debouncedUsername],
+                queryFn: async () => {
+                    return (await fetchUserRepos(username)).data;
+                },
+            }, {
+                queryKey: ['orgs', debouncedUsername],
+                queryFn: async () => {
+                    return (await fetchUserOrgs(username)).data;
+                },
+            },
+        ]
+        )
 
     return (
         <>
@@ -21,17 +44,17 @@ export const GithubUserInfo = () => {
             <div className="grid sm:grid-cols-[minmax(auto,400px)_minmax(auto,600px)] sm:grid-rows-[auto_1fr] gap-y-2 gap-x-4 my-4">
                 <div className="">
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>User</Typography>
-                    <User {...sampleUser} />
+                    {userLoading ? (<CircularProgress />) : (<User {...userData} />)}
                 </div>
 
                 <div className="sm:row-span-2">
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Repositories</Typography>
-                    {sampleRepos.map((r) => <Repository {...r} key={r.id} />
+                    {reposLoading ? (<CircularProgress />) : reposData.map((r) => <Repository {...r} key={r.id} />
                     )}
                 </div>
                 <div className="">
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Organizations</Typography>
-                    {sampleOrgs.map((o) => <Organization {...o} key={o.id} />
+                    {orgsLoading ? (<CircularProgress />) : orgsData.map((o) => <Organization {...o} key={o.id} />
                     )}
                 </div>
             </div>
