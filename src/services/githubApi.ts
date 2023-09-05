@@ -13,5 +13,5 @@ export async function fetchUserRepos(username:string){
 }
 
 export async function fetchUserOrgs(username: string){
-  return githubApi.get(`/users/${username}/org`);
+  return githubApi.get(`/users/${username}/orgs`);
 }
