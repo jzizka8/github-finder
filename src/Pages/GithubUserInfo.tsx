@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useQueries } from "react-query";
 import { fetchUserInfo, fetchUserOrgs, fetchUserRepos } from "../services/githubApi";
+import { DisplayData } from "../Components/DisplayData";
 
 export const GithubUserInfo = () => {
     const [username, setUsername] = useState("");
@@ -47,62 +48,36 @@ export const GithubUserInfo = () => {
             <div className="grid sm:grid-cols-[minmax(auto,400px)_minmax(auto,600px)] sm:grid-rows-[auto_1fr] gap-y-2 gap-x-4 my-4">
                 <div>
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>User</Typography>
-                    {DisplayData({
+                    {<DisplayData {...{
                         data: userData,
                         isLoading: userLoading,
                         isError: userError,
                         component: <User {...userData} />,
                         errorText: "Error loading user",
-                    })}
+                    }} />}
                 </div>
 
                 <div className="sm:row-span-2">
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Repositories</Typography>
-                    {DisplayData({
+                    {<DisplayData {...{
                         data: reposData,
                         isLoading: reposLoading,
                         isError: reposError,
                         component: reposData.map((r) => <Repository {...r} key={r.id} />),
                         errorText: "Error loading repositories",
-                    })}
+                    }} />}
                 </div>
                 <div>
                     <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Organizations</Typography>
-                    {DisplayData({
+                    {<DisplayData {...{
                         data: orgsData,
                         isLoading: orgsLoading,
                         isError: orgsError,
                         component: orgsData.map((o) => <Organization {...o} key={o.id} />),
                         errorText: "Error loading organizations",
-                    })}
+                    }} />}
                 </div>
             </div>
         </>
     )
 }
-
-interface IDisplayDataProps {
-
-    data: any;
-    isLoading: boolean;
-    isError: boolean;
-    component: JSX.Element | JSX.Element[] | null;
-    errorText: string;
-}
-
-const DisplayData = ({ data, isLoading, isError, component, errorText }: IDisplayDataProps) => {
-    if (!data) {
-        return <Typography variant="body1">Nothing to display</Typography>;
-    }
-    if (isLoading) {
-        return <CircularProgress />;
-    }
-    if (isError) {
-        return (
-            <Typography variant="body1" className="text-red-700">
-                {errorText}
-            </Typography>
-        );
-    }
-    return component;
-};
