@@ -20,16 +20,19 @@ export const GithubUserInfo = () => {
                 queryFn: async () => {
                     return (await fetchUserInfo(username)).data;
                 },
+                retry: false
             }, {
                 queryKey: ['repos', debouncedUsername],
                 queryFn: async () => {
                     return (await fetchUserRepos(username)).data;
                 },
+                retry: false
             }, {
                 queryKey: ['orgs', debouncedUsername],
                 queryFn: async () => {
                     return (await fetchUserOrgs(username)).data;
                 },
+                retry: false
             },
         ]
         )
