@@ -8,11 +8,16 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    // project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+    'react/react-in-jsx-scope': 0,
+    'import/extensions': 0,
+    "react/prefer-stateless-function": ["error", {"ignorePureComponents": true}],
   },
 }
