@@ -1,10 +1,10 @@
 import { Typography, CircularProgress } from "@mui/material";
 
 interface IDisplayDataProps {
-    data: any;
+    data?: object | null;
     isLoading: boolean;
     isError: boolean;
-    component: JSX.Element | JSX.Element[] | null;
+    component?: JSX.Element | JSX.Element[] | null;
     errorText: string;
 }
 

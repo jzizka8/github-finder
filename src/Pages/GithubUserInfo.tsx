@@ -1,4 +1,4 @@
-import { CircularProgress, TextField, Typography } from "@mui/material"
+import { TextField, Typography } from "@mui/material"
 import { Organization } from "../Components/Organization"
 import { Repository } from "../Components/Repository"
 import { User } from "../Components/User"
@@ -21,17 +21,17 @@ export const GithubUserInfo = () => {
                 queryFn: async () => {
                     if (!username) {
                         return null
-                    } 
-                    return (await fetchUserInfo(username)).data;
+                    }
+                    return fetchUserInfo(username);
                 },
-                retry: false
+                retry: false,
             }, {
                 queryKey: ['repos', debouncedUsername],
                 queryFn: async () => {
                     if (!username) {
                         return null
-                    } 
-                    return (await fetchUserRepos(username)).data;
+                    }
+                    return fetchUserRepos(username);
                 },
                 retry: false
             }, {
@@ -40,9 +40,9 @@ export const GithubUserInfo = () => {
                     if (!username) {
                         return null
                     }
-                    return (await fetchUserOrgs(username)).data;
+                    return fetchUserOrgs(username);
                 },
-                retry: false
+                retry: false,
             },
         ]
         )
@@ -62,7 +62,7 @@ export const GithubUserInfo = () => {
                         data: userData,
                         isLoading: userLoading,
                         isError: userError,
-                        component: <User {...userData} />,
+                        component: (userData && <User {...userData} />),
                         errorText: "Error loading user",
                     }} />}
                 </div>
