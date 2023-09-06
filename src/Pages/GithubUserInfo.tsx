@@ -53,7 +53,8 @@ export const GithubUserInfo = () => {
             <TextField id="username" label="Username" variant="standard" type="text"
                 placeholder="Enter username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)} />
+                onChange={(e) => setUsername(e.target.value)}
+                className="mt-2" />
             <div className="grid sm:grid-cols-[minmax(auto,400px)_minmax(auto,600px)] sm:grid-rows-[auto_1fr] gap-y-2 gap-x-4 my-4">
                 <div>
                     <Typography variant="h3" component="h2" className='text-emerald-500 my-2'>User</Typography>
