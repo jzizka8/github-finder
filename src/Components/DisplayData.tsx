@@ -9,9 +9,6 @@ interface IDisplayDataProps {
 }
 
 export const DisplayData = (props: IDisplayDataProps) => {
-    if (!props.data) {
-        return <Typography variant="body1">Nothing to display</Typography>;
-    }
     if (props.isLoading) {
         return <CircularProgress />;
     }
@@ -21,6 +18,9 @@ export const DisplayData = (props: IDisplayDataProps) => {
                 {props.errorText}
             </Typography>
         );
+    }
+    if (!props.data) {
+        return <Typography variant="body1">Nothing to display</Typography>;
     }
     return props.component;
 };
