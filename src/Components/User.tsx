@@ -13,7 +13,7 @@ interface IUserProps {
 export const User = (props: IUserProps) => {
     return (
         <Card >
-            <CardActionArea href={props.html_url} target="blank" className="p-4">
+            <CardActionArea href={props.html_url} target="blank" className="p-4 pb-0">
                 <div className="flex justify-center">
                     <Avatar alt={props.login}
                         src={props.avatar_url}
@@ -21,7 +21,9 @@ export const User = (props: IUserProps) => {
                 </div>
                 <Typography variant="h4" component="h3" > {props.login}</Typography>
                 {props.bio && <Typography variant="body1" className="text-gray-600"> {props.bio}</Typography>}
-                {props.blog && <Link href={props.blog}>Blog</Link>}
+            </CardActionArea>
+            <div className="p-4 pt-0  ">
+                {props.blog && <Link href={props.blog} target="blank">Blog</Link>}
                 <div className="flex justify-between mt-2">
                     <Typography variant="body1">
                         <span className="font-bold">{props.followers}</span> followers
@@ -30,7 +32,7 @@ export const User = (props: IUserProps) => {
                         <span className="font-bold">{props.following}</span> following
                     </Typography>
                 </div>
-            </CardActionArea>
+            </div>
         </Card>
 
     )
