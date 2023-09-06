@@ -63,7 +63,9 @@ export const GithubUserInfo = () => {
                         data: reposData,
                         isLoading: reposLoading,
                         isError: reposError,
-                        component: reposData.map((r) => <Repository {...r} key={r.id} />),
+                        component: reposData?.length ?
+                            reposData?.map((r) => <Repository {...r} key={r.id} />) :
+                            <Typography variant="body1">User has no repositories</Typography>,
                         errorText: "Error loading repositories",
                     }} />}
                 </div>
@@ -73,7 +75,9 @@ export const GithubUserInfo = () => {
                         data: orgsData,
                         isLoading: orgsLoading,
                         isError: orgsError,
-                        component: orgsData.map((o) => <Organization {...o} key={o.id} />),
+                        component: orgsData?.length ?
+                            orgsData?.map((o) => <Organization {...o} key={o.id} />) :
+                            <Typography variant="body1">User has no organizations</Typography>,
                         errorText: "Error loading organizations",
                     }} />}
                 </div>
