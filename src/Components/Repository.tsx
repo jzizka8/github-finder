@@ -13,7 +13,7 @@ interface IRepositoryProps {
 export const Repository = (props: IRepositoryProps) => {
     return (
         <Card className="my-2">
-            <CardActionArea href={props.html_url} className="flex flex-col items-start p-2">
+            <CardActionArea href={props.html_url} target="blank" className="flex flex-col items-start p-2">
                 <Typography variant="h6" component="h3" > {props.name}</Typography>
                 <Typography variant="body1" className="text-gray-600" > {props.description}</Typography>
                 <div className="flex gap-3 mt-2">
