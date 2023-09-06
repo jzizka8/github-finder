@@ -56,7 +56,7 @@ export const GithubUserInfo = () => {
                 onChange={(e) => setUsername(e.target.value)} />
             <div className="grid sm:grid-cols-[minmax(auto,400px)_minmax(auto,600px)] sm:grid-rows-[auto_1fr] gap-y-2 gap-x-4 my-4">
                 <div>
-                    <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>User</Typography>
+                    <Typography variant="h3" component="h2" className='text-emerald-500 my-2'>User</Typography>
                     {<DisplayData {...{
                         data: userData,
                         isLoading: userLoading,
@@ -67,7 +67,7 @@ export const GithubUserInfo = () => {
                 </div>
 
                 <div className="sm:row-span-2">
-                    <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Repositories</Typography>
+                    <Typography variant="h3" component="h2" className='text-emerald-500 my-2'>Repositories</Typography>
                     {<DisplayData {...{
                         data: reposData,
                         isLoading: reposLoading,
@@ -79,7 +79,7 @@ export const GithubUserInfo = () => {
                     }} />}
                 </div>
                 <div>
-                    <Typography variant="h3" component="h2" className='text-emerald-600 my-2'>Organizations</Typography>
+                    <Typography variant="h3" component="h2" className='text-emerald-500 my-2'>Organizations</Typography>
                     {<DisplayData {...{
                         data: orgsData,
                         isLoading: orgsLoading,
